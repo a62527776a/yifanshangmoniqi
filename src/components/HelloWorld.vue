@@ -1,40 +1,45 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <h2>一番赏模拟器</h2>
+    <div>总计：{{a.total}}剩余：{{a.len}}</div>
+    <div v-for="(item, idx) in a.slots" :key="idx">
+      <a>{{item.name}} {{item.good.name}}</a>x{{item.count}} <span>几率：{{a.scale(item.type).scaleStr}}</span>
+    </div>
+    <div>
+      <a>{{a.last.name}} {{a.last.good.name}}</a>
+    </div>
+    <div>
+      <br />
+      <div>箱子初始预期：预期出手办概率{{a.lotteryDraw.scaleStr}} 预期每{{a.lotteryDraw.everyOutGood}}发出一手办</div>
+      <div>每次不出手办将叠加几率{{a.lotteryDraw.everyOutGoodScaleStr}}</div>
+    </div>
+    <div>
+      当前中手办叠加几率 {{a.lotteryDraw.GKScale}} 每次抽完后将按照叠加几率增减
+    </div>
+
+    <br />
+
+    <button @click="a.lotteryDrawFn()" type="button" class="btn btn-primary">来一发</button>
+
+    <div>
+      <div v-for="(item, idx) in a.lotteryDraw.records" :key="idx">{{item}}</div>
+    </div>
+
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { reactive } from '@vue/reactivity'
+import { A } from './a'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  setup() {
+    const a = reactive(new A())
+    // a.addSlot(SlotType.A, 5)
+    console.log(a.slots)
+    return {
+      msg: 'dwqqwd',
+      a
+    }
   }
 }
 </script>
