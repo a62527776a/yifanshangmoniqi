@@ -96,6 +96,15 @@ export class A {
         return this._slots.values()
     }
     
+    addItem (type: SlotType) {
+        const slot = this._slots.get(type)
+        if (slot) {
+            slot.count += 1
+            slot.total += 1
+        }
+        this.numbers()
+    }
+
     // 比例
     scale(type: SlotType) {
         const slot = this._slots.get(type)
@@ -158,6 +167,12 @@ export class A {
 class LotteryDraw {
     GKScale = 0 // 怒气值
 
+    
+    public get GKScaleStr() : string {
+        return (this.GKScale * 100).toFixed(2) + '%'
+    }
+    
+
     records: string[] = []
 
     scale = 0 // 预期出手办概率
@@ -178,8 +193,10 @@ class LotteryDraw {
         const random = Math.random();
         let scale = 0;
         let result;
+        let lastSlot;
         const len = gkLen + lajiLen
         for (const slot of slots) {
+            if (slot.count == 0) continue
             scale += slot.count / len
             // 如果有怒气值干预
             if (this.GKScale != 0) {
@@ -191,15 +208,17 @@ class LotteryDraw {
                     currentScale = this.GKScale / lajiLen
                     scale -= currentScale
                 }
-                console.log('怒气值：', this.GKScale)
-                console.log('怒气值干预:', currentScale)
             }
+            console.log('scale', scale, random)
+            lastSlot = slot
             if (scale <= 0) continue
             if (random <= scale) {
                 result = slot
                 break
             }
         }
+        if (random > scale) result = lastSlot
+        console.log(result)
         return result
     }
 

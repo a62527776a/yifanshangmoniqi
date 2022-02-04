@@ -3,7 +3,7 @@
     <h2>一番赏模拟器</h2>
     <div>总计：{{a.total}}剩余：{{a.len}}</div>
     <div v-for="(item, idx) in a.slots" :key="idx">
-      <a>{{item.name}} {{item.good.name}}</a>x{{item.count}} <span>几率：{{a.scale(item.type).scaleStr}}</span>
+      <a>{{item.name}} {{item.good.name}}</a>x{{item.count}} <span>几率：{{a.scale(item.type).scaleStr}}</span><i @click="addItem(item.type)">&nbsp;&nbsp;&nbsp;+ 添加</i>
     </div>
     <div>
       <a>{{a.last.name}} {{a.last.good.name}}</a>
@@ -14,7 +14,7 @@
       <div>每次不出手办将叠加几率{{a.lotteryDraw.everyOutGoodScaleStr}}</div>
     </div>
     <div>
-      当前中手办叠加几率 {{a.lotteryDraw.GKScale}} 每次抽完后将按照叠加几率增减
+      当前中手办叠加几率 {{a.lotteryDraw.GKScaleStr}} 每次抽完后将按照叠加几率增减
     </div>
 
     <br />
@@ -30,15 +30,17 @@
 
 <script lang="ts">
 import { reactive } from '@vue/reactivity'
-import { A } from './a'
+import { A, SlotType } from './a'
 export default {
   setup() {
     const a = reactive(new A())
-    // a.addSlot(SlotType.A, 5)
-    console.log(a.slots)
+    const addItem = (type: SlotType) => {
+      a.addItem(type)
+    }
     return {
       msg: 'dwqqwd',
-      a
+      a,
+      addItem
     }
   }
 }
