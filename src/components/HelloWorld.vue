@@ -19,7 +19,8 @@
 
     <br />
 
-    <button @click="a.lotteryDrawFn()" type="button" class="btn btn-primary">来一发</button>
+    <button @click="loop80" type="button" class="btn btn-primary">来一发</button>
+    <button @click="refresh" type="button" class="btn btn-primary">刷新</button>
 
     <div>
       <div v-for="(item, idx) in a.lotteryDraw.records" :key="idx">{{item}}</div>
@@ -33,14 +34,27 @@ import { reactive } from '@vue/reactivity'
 import { A, SlotType } from './a'
 export default {
   setup() {
-    const a = reactive(new A())
+    let a = reactive(new A())
     const addItem = (type: SlotType) => {
       a.addItem(type)
     }
+
+    let refresh = () => {
+      window.location.reload()
+    }
+
+    const loop80 = () => {
+      for (let i = 0; i < 80; i++) {
+        a.lotteryDrawFn()
+      }
+    }
+
     return {
       msg: 'dwqqwd',
       a,
-      addItem
+      addItem,
+      refresh,
+      loop80
     }
   }
 }

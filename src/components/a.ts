@@ -140,11 +140,14 @@ export class A {
     }
 
     constructor () {
-        this._slots.set(SlotType.A, new Slot(SlotType.A, new Goods(GoodsType.手办), 4))
-        this._slots.set(SlotType.B, new Slot(SlotType.B, new Goods(GoodsType.手办), 4))
-        this._slots.set(SlotType.C, new Slot(SlotType.C, new Goods(GoodsType.时尚小垃圾), 16))
-        this._slots.set(SlotType.D, new Slot(SlotType.D, new Goods(GoodsType.时尚小垃圾), 26))
-        this._slots.set(SlotType.E, new Slot(SlotType.E, new Goods(GoodsType.时尚小垃圾), 30))
+        this._slots.set(SlotType.A, new Slot(SlotType.A, new Goods(GoodsType.手办), 1))
+        this._slots.set(SlotType.B, new Slot(SlotType.B, new Goods(GoodsType.手办), 1))
+        this._slots.set(SlotType.C, new Slot(SlotType.C, new Goods(GoodsType.手办), 1))
+        this._slots.set(SlotType.D, new Slot(SlotType.D, new Goods(GoodsType.手办), 2))
+        this._slots.set(SlotType.E, new Slot(SlotType.E, new Goods(GoodsType.手办), 2))
+        this._slots.set(SlotType.F, new Slot(SlotType.F, new Goods(GoodsType.时尚小垃圾), 28))
+        this._slots.set(SlotType.G, new Slot(SlotType.G, new Goods(GoodsType.时尚小垃圾), 17))
+        this._slots.set(SlotType.H, new Slot(SlotType.H, new Goods(GoodsType.时尚小垃圾), 28))
         this.numbers()
     }
 
