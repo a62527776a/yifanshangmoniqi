@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
     <h2>一番赏模拟器</h2>
+    <div>初始干预概率：</div>
+    <input v-model="a.lotteryDraw.GKScale" type="number" />
+    <div>干预概率倍率： (0不干预)</div>
+    <input v-model="a.lotteryDraw.概率倍率" />
     <div>总计：{{a.total}}剩余：{{a.len}}</div>
     <div v-for="(item, idx) in a.slots" :key="idx">
       <a>{{item.name}} {{item.good.name}}</a>x{{item.count}} <span>几率：{{a.scale(item.type).scaleStr}}</span><i @click="addItem(item.type)">&nbsp;&nbsp;&nbsp;+ 添加</i>

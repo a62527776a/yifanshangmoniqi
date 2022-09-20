@@ -170,6 +170,7 @@ export class A {
 class LotteryDraw {
     GKScale = 0 // 怒气值
 
+    概率倍率 = 1
     
     public get GKScaleStr() : string {
         return (this.GKScale * 100).toFixed(2) + '%'
@@ -205,10 +206,10 @@ class LotteryDraw {
             if (this.GKScale != 0) {
                 let currentScale = 0 // 怒气值干预的概率
                 if (slot.good.goodType == GoodsType.手办) {
-                    currentScale = this.GKScale / gkLen
+                    currentScale = (this.GKScale * this.概率倍率) / gkLen
                     scale += currentScale
                 } else {
-                    currentScale = this.GKScale / lajiLen
+                    currentScale = (this.GKScale * this.概率倍率) / lajiLen
                     scale -= currentScale
                 }
             }
