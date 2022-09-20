@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h2>一番赏模拟器</h2>
-    <div>初始干预概率：</div>
+    <!-- <div>初始干预概率：</div>
     <input v-model="a.lotteryDraw.GKScale" type="number" />
     <div>干预概率倍率： (0不干预)</div>
     <input v-model="a.lotteryDraw.概率倍率" />
@@ -21,7 +21,7 @@
       当前中手办叠加几率 {{a.lotteryDraw.GKScaleStr}} 每次抽完后将按照叠加几率增减
     </div>
 
-    <br />
+    <br /> -->
 
     <button @click="loop80" type="button" class="btn btn-primary">来一发</button>
     <button @click="refresh" type="button" class="btn btn-primary">刷新</button>
