@@ -36,12 +36,28 @@
 <script lang="ts">
 import { reactive } from '@vue/reactivity'
 import { A, SlotType } from './a'
+import { watchEffect } from '@vue/runtime-core'
 export default {
-  setup() {
+  props: {
+    GKScale: {
+      type: Number,
+      required: true
+    },
+    概率倍率: {
+      type: Number,
+      required: true
+    },
+  },
+  setup(props: any) {
     let a = reactive(new A())
     const addItem = (type: SlotType) => {
       a.addItem(type)
     }
+
+    watchEffect(() => {
+      a.lotteryDraw.GKScale = props.GKScale
+      a.lotteryDraw.概率倍率 = props.概率倍率
+    })
 
     let refresh = () => {
       window.location.reload()
