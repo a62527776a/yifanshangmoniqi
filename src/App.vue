@@ -27,8 +27,17 @@ export default {
         currentInstance = getCurrentInstance()
     })
 
-    const exec = () => {
+    const sleep = () => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(true)
+        }, 50)
+      })
+    }
+
+    const exec = async () => {
       for (let i = 0; i < currentInstance.refs.doms.length; i++) {
+        await sleep()
         currentInstance.refs.doms[i].loop80()
       }
     }

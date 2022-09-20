@@ -27,7 +27,9 @@
     <button @click="refresh" type="button" class="btn btn-primary">刷新</button>
 
     <div>
-      <div v-for="(item, idx) in a.lotteryDraw.records" :key="idx">{{item}}</div>
+      <div v-for="(item, idx) in a.lotteryDraw.records" :key="'wdwdw' + idx">
+        <div v-if="item.indexOf('手办') > -1" :key="'qwdqwd' + item">您在{{idx}}次{{item}}</div>
+      </div>
     </div>
 
   </div>
@@ -63,7 +65,7 @@ export default {
       window.location.reload()
     }
 
-    const loop80 = () => {
+    const loop80 = async () => {
       for (let i = 0; i < 80; i++) {
         a.lotteryDrawFn()
       }

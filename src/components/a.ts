@@ -135,7 +135,7 @@ export class A {
         const slot = this._slots.get(type)
         if (slot) {
             slot.count -= 1
-            this.lotteryDraw.records.unshift(`您抽中了${slot.name}${slot.good.name}`)
+            this.lotteryDraw.records.unshift(`抽中了${slot.name}${slot.good.name}`)
         }
     }
 
